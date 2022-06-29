@@ -18,6 +18,11 @@ input {
   font-size: 18px;
 }
 
+::placeholder{
+  font-style: italic;
+  font-weight: lighter;
+  opacity: 0.5;
+}
 input:focus {
   outline-width: 0;
   /* this is removes the black-border given by browser 

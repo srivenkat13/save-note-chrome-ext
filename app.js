@@ -2,13 +2,20 @@ const inputEL = document.getElementById("input-el");
 const saveTabBtn = document.getElementById("tab-btn");
 const delBtn = document.getElementById("del-btn");
 const itemEl = document.getElementById("list-el");
+const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItem"));
 
 let myItems = [];
+
+if (itemsFromLocalStorage) {
+  myItems = itemsFromLocalStorage;
+  render(myItems);
+}
 
 /*---------------------------- */
 inputEL.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     myItems.push(inputEL.value);
+    localStorage.setItem("myItem", JSON.stringify(myItems));
     inputEL.value = "";
     render(myItems);
   }
@@ -34,6 +41,8 @@ saveTabBtn.addEventListener("click", () => {
     { active: true, currentWindow: true },
     function (tabs) {
       myItems.push(tabs[0].url);
+      localStorage.setItem("myItem", JSON.stringify(myItems));
+
       render(myItems);
     }
   );
@@ -41,6 +50,7 @@ saveTabBtn.addEventListener("click", () => {
 
 delBtn.addEventListener("dblclick", () => {
   myItems = [];
+  localStorage.clear();
   render(myItems);
 });
 

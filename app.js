@@ -1,24 +1,49 @@
 const inputEL = document.getElementById("input-el");
 const saveTabBtn = document.getElementById("tab-btn");
 const delBtn = document.getElementById("del-btn");
-const listEl = document.getElementById("list-el");
+const itemEl = document.getElementById("list-el");
+const linkEl = document.getElementById("list2-el");
 
 let myItems = [];
+let myLinks = [];
 
+let isItem = true;
+
+/*---------------------------- */
 inputEL.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
+    isItem = true;
     myItems.push(inputEL.value);
     inputEL.value = "";
-    renderItem(myItems);
+    renderItem(myItems, isItem);
   }
 });
 
-function renderItem(arr) {
+function renderItem(arr, flag) {
   let listItems = "";
+  let linkItems = "";
+
   for (let i = 0; i < arr.length; i++) {
-    listItems += `
-    <li> ${arr[i]}</li>
-    `;
+    if (flag) {
+      listItems += `
+        <li> ${arr[i]}</li>
+        `;
+      itemEl.innerHTML = listItems;
+    } else {
+      linkItems += `
+        <li> 
+            <a target="_blank" href="${arr[i]}">
+            ${arr[i]}
+            </a>
+        </li>
+        `;
+      linkEl.innerHTML = linkItems;
+    }
   }
-  listEl.innerHTML = listItems;
 }
+
+saveTabBtn.addEventListener("click", () => {
+  isItem = false;
+  myLinks.push(inputEL.value);
+  renderItem(myLinks, isItem);
+});

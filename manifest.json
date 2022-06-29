@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "version": "1.0",
+    "name":"Save-note",
+    "action":{
+        "default_popup":"index.html",
+        "default-icon":"icon.png"
+    },
+    "permissions":[
+        "tabs"
+    ],
+    "description":"Save ToDos and Tabs quickly"
+}

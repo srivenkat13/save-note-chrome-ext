@@ -1,4 +1,5 @@
 const inputEL = document.getElementById("input-el");
+const saveBtn = document.getElementById("save-btn");
 const saveTabBtn = document.getElementById("tab-btn");
 const delBtn = document.getElementById("del-btn");
 const itemEl = document.getElementById("list-el");
@@ -15,11 +16,16 @@ inputEL.addEventListener("keypress", (e) => {
     isItem = true;
     myItems.push(inputEL.value);
     inputEL.value = "";
-    renderItem(myItems, isItem);
+    render(myItems);
   }
 });
+saveBtn.addEventListener("click", () => {
+  myItems.push(inputEL.value);
+  inputEL.value = "";
+  render(myItems);
+});
 
-function renderItem(arr, flag) {
+function render(arr) {
   let listItems = "";
   let linkItems = "";
 

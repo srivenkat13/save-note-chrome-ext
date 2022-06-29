@@ -17,5 +17,5 @@ You can now find it in your extensions
 - `parse` and `stringfy`
 ----
 <div align="center">
- <img src="sample.png"  alt="extension-sample">
+ <img src="sample.Png"  alt="extension-sample">
  </div>

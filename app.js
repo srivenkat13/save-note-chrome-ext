@@ -1,55 +1,60 @@
 const inputEL = document.getElementById("input-el");
-const saveBtn = document.getElementById("save-btn");
 const saveTabBtn = document.getElementById("tab-btn");
 const delBtn = document.getElementById("del-btn");
 const itemEl = document.getElementById("list-el");
-const linkEl = document.getElementById("list2-el");
+const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItem"));
 
 let myItems = [];
-let myLinks = [];
 
-let isItem = true;
+if (itemsFromLocalStorage) {
+  myItems = itemsFromLocalStorage;
+  render(myItems);
+}
 
 /*---------------------------- */
 inputEL.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    isItem = true;
     myItems.push(inputEL.value);
+    localStorage.setItem("myItem", JSON.stringify(myItems));
     inputEL.value = "";
     render(myItems);
   }
 });
-saveBtn.addEventListener("click", () => {
-  myItems.push(inputEL.value);
-  inputEL.value = "";
-  render(myItems);
-});
 
 function render(arr) {
   let listItems = "";
-  let linkItems = "";
 
   for (let i = 0; i < arr.length; i++) {
-    if (flag) {
-      listItems += `
-        <li> ${arr[i]}</li>
-        `;
-      itemEl.innerHTML = listItems;
-    } else {
-      linkItems += `
+    listItems += `
         <li> 
-            <a target="_blank" href="${arr[i]}">
+            <a target='_blank' href='${arr[i]}'>
             ${arr[i]}
             </a>
         </li>
         `;
-      linkEl.innerHTML = linkItems;
-    }
   }
+  itemEl.innerHTML = listItems;
 }
 
 saveTabBtn.addEventListener("click", () => {
-  isItem = false;
-  myLinks.push(inputEL.value);
-  renderItem(myLinks, isItem);
+  (window.browser || window.chrome).tabs.query(
+    { active: true, currentWindow: true },
+    function (tabs) {
+      myItems.push(tabs[0].url);
+      localStorage.setItem("myItem", JSON.stringify(myItems));
+
+      render(myItems);
+    }
+  );
+});
+
+delBtn.addEventListener("dblclick", () => {
+  myItems = [];
+  localStorage.clear();
+  render(myItems);
+});
+
+delBtn.addEventListener("click", () => {
+  myItems.pop();
+  render(myItems);
 });

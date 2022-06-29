@@ -13,6 +13,8 @@ You can now find it in your extensions
 ### Learnt:
 - Good revision for `eventListeners`, `DOM manipulation`
 - Building first chrome extension 
+- Store and retrieve from `localStorage`
+- `parse` and `stringfy`
 ----
 <div align="center">
  <img src="sample.png"  alt="extension-sample">

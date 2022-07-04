@@ -1,6 +1,6 @@
 ## A simple chrome extension to save Tabs and to-dos
 
-( this is just a local extension, cannot find on chrome web store)
+( this is just a local extension, you cannot find on chrome web store)
 
 ### Steps to Install
 - Download the code as zip file and extract it.

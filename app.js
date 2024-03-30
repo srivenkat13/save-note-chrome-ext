@@ -6,6 +6,8 @@ const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItem"));
 const themebtn = document.getElementById("modes");
 
 
+const delItem = document.querySelector("a")
+
 let myItems = [];
 
 if (itemsFromLocalStorage) {
@@ -32,6 +34,7 @@ function render(arr) {
             <a target='_blank' href='${arr[i]}'>
             ${arr[i]}
             </a>
+            <button onclick='deleteItem(${i})' id="item-del-btn">❌</button>
         </li>
         `;
   }
@@ -44,22 +47,27 @@ saveTabBtn.addEventListener("click", () => {
     function (tabs) {
       myItems.push(tabs[0].url);
       localStorage.setItem("myItem", JSON.stringify(myItems));
-
+      
       render(myItems);
     }
-  );
-});
+    );
+  });
+  
+  delBtn.addEventListener("click", () => {
+    myItems = [];
+    localStorage.clear();
+    render(myItems);
+  });
+  
+  // delBtn.addEventListener("click", () => {
+    //   myItems.pop();
+    //   render(myItems);
+    // });
 
-delBtn.addEventListener("dblclick", () => {
-  myItems = [];
-  localStorage.clear();
-  render(myItems);
-});
-
-delBtn.addEventListener("click", () => {
-  myItems.pop();
-  render(myItems);
-});
+function deleteItem(index){
+  myItems.splice(index,1)
+  localStorage.setItem("myItem", JSON.stringify(myItems));
+  render(myItems)
 
 function mode() {
   let body = document.body;

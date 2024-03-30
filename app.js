@@ -3,6 +3,8 @@ const saveTabBtn = document.getElementById("tab-btn");
 const delBtn = document.getElementById("del-btn");
 const itemEl = document.getElementById("list-el");
 const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItem"));
+const themebtn = document.getElementById("modes");
+
 
 const delItem = document.querySelector("a")
 
@@ -66,4 +68,8 @@ function deleteItem(index){
   myItems.splice(index,1)
   localStorage.setItem("myItem", JSON.stringify(myItems));
   render(myItems)
+
+function mode() {
+  let body = document.body;
+  body.classList.toggle("dark-mode");
 }

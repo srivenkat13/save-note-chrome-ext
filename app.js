@@ -48,13 +48,13 @@ saveTabBtn.addEventListener("click", () => {
   );
 });
 
-delBtn.addEventListener("dblclick", () => {
+delBtn.addEventListener("click", () => {
   myItems = [];
   localStorage.clear();
   render(myItems);
 });
 
-delBtn.addEventListener("click", () => {
-  myItems.pop();
-  render(myItems);
-});
+// delBtn.addEventListener("click", () => {
+//   myItems.pop();
+//   render(myItems);
+// });

@@ -3,6 +3,8 @@ const saveTabBtn = document.getElementById("tab-btn");
 const delBtn = document.getElementById("del-btn");
 const itemEl = document.getElementById("list-el");
 const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItem"));
+const themebtn = document.getElementById("modes");
+
 
 let myItems = [];
 
@@ -58,3 +60,8 @@ delBtn.addEventListener("click", () => {
   myItems.pop();
   render(myItems);
 });
+
+function mode() {
+  let body = document.body;
+  body.classList.toggle("dark-mode");
+}

@@ -69,7 +69,9 @@ function deleteItem(index){
   localStorage.setItem("myItem", JSON.stringify(myItems));
   render(myItems)
 }
-function mode() {
+
+themebtn.addEventListener("click",changeTheme)
+function changeTheme() {
   let body = document.body;
   body.classList.toggle("dark-mode");
 }

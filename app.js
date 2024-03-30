@@ -34,7 +34,7 @@ function render(arr) {
             <a target='_blank' href='${arr[i]}'>
             ${arr[i]}
             </a>
-            <button onclick='deleteItem(${i})' id="item-del-btn">❌</button>
+            <button class="item-del-btn" data-index='${i}'>❌</button>
         </li>
         `;
   }
@@ -63,6 +63,12 @@ saveTabBtn.addEventListener("click", () => {
     //   myItems.pop();
     //   render(myItems);
     // });
+itemEl.addEventListener('click',function(event) {
+  if(event.target.classList.contains("item-del-btn")){
+    const index = parseInt(event.target.dataset.index)
+    deleteItem(index)
+  }
+})
 
 function deleteItem(index){
   myItems.splice(index,1)

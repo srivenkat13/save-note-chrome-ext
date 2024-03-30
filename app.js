@@ -68,7 +68,7 @@ function deleteItem(index){
   myItems.splice(index,1)
   localStorage.setItem("myItem", JSON.stringify(myItems));
   render(myItems)
-
+}
 function mode() {
   let body = document.body;
   body.classList.toggle("dark-mode");

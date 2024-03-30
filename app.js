@@ -76,8 +76,8 @@ function deleteItem(index){
   render(myItems)
 }
 
-themebtn.addEventListener("click",changeTheme)
 function changeTheme() {
   let body = document.body;
   body.classList.toggle("dark-mode");
 }
+themebtn.addEventListener("click",changeTheme)

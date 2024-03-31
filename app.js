@@ -5,7 +5,7 @@ const itemEl = document.getElementById("list-el");
 const itemsFromLocalStorage = JSON.parse(localStorage.getItem("myItem"));
 const themebtn = document.getElementById("modes");
 
-
+const themePreference = localStorage.getItem("theme_pref")
 const delItem = document.querySelector("a")
 
 let myItems = [];
@@ -15,6 +15,10 @@ if (itemsFromLocalStorage) {
   render(myItems);
 }
 
+
+if(themePreference) {
+  document.body.classList.add("dark-mode")
+}
 /*---------------------------- */
 inputEL.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
@@ -80,4 +84,11 @@ themebtn.addEventListener("click",changeTheme)
 function changeTheme() {
   let body = document.body;
   body.classList.toggle("dark-mode");
+
+  if(body.classList.contains("dark-mode")){
+    localStorage.setItem("theme_pref","dark")
+  }
+  else{
+    localStorage.removeItem("theme_pref")
+  }
 }
